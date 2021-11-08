@@ -41,6 +41,7 @@
 .column-c {
   grid-column-start: 6;
   grid-column-end: 7;  
+  
 }
 
 .column-d {
@@ -56,6 +57,7 @@
 .column-bc {
   grid-column-start: 4;
   grid-column-end: 7;
+  background-color: green;
 }
 
 .column-cd {
