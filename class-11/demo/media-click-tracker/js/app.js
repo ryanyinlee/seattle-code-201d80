@@ -23,6 +23,10 @@ const GoatPicture = function (name, imageSrc) {
 
 GoatPicture.allImages = [];
 
+
+
+
+
 /*
 Prevent last picked goats from being picked
       - STRETCH pick all goats evenly as possible
