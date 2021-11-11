@@ -1,5 +1,6 @@
 /* Globals */
 currentRound = 0;
+maxRound = 5;
 
 /* Constructors */
 function Goat(name, url) {
@@ -50,8 +51,40 @@ function renderGoats() {
     Goat.right.render('right');
 }
 
-
 function populateGoats() {
+    // check local storage
+
+    //if goat stuff in there then..
+
+    const goatsJSON = localStorage.getItem('goats');
+
+    if (goatsJSON) {
+        recreateFromStoredGoats(goatsJSON);
+    } else {
+        createNewGoats();
+    }
+
+}
+
+function recreateFromStoredGoats(goatsJSON) {
+    // use the stored data to recreate Goat instances
+
+    const rawGoats = JSON.parse(goatsJSON); // an array of "raw" goat info
+    console.log('rawGoats', rawGoats);
+    // convert raw goat objects into proper Goat instances
+
+    for(let i = 0; i < rawGoats.length; i+=1) {
+        const rawGoat = rawGoats[i];
+        const goatInstance = new Goat(rawGoat.name, rawGoat.url);
+        console.log(goatInstance);
+        goatInstance.votes = rawGoate.votes;
+    }
+
+
+
+}
+
+function createNewGoats() {
     new Goat('cruisin', 'images/cruisin-goat.jpg');
     new Goat('float-your-goat', 'images/float-your-goat.jpg');
     new Goat('goat-away', 'images/goat-away.jpg');
@@ -85,7 +118,7 @@ function handleClick(event) {
 
     currentRound += 1;
 
-    if (currentRound === 5) {
+    if (currentRound === maxRound) {
         document.getElementById('results').hidden = false;
 
         removeEventListeners();
